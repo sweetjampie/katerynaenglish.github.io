@@ -15,17 +15,9 @@
   --teal-light: #6BB8BC;
   --teal-pale: #C8E8EA;
   --teal-ghost: #EAF5F6;
-  --blue-deep: #1C3A5E;
-  --blue: #2B5F8E;
-  --blue-mid: #4A86B8;
-  --blue-light: #8BBDD9;
-  --blue-pale: #D0E8F5;
-  --blue-ghost: #EBF4FA;
   --ink: #1A2E30;
   --ink-mid: #3A5558;
   --ink-soft: #6B8C8F;
-  --ink-muted: #A8C0C2;
-  --accent: #2A7275;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,164 +34,93 @@ body {
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; width: 100%; z-index: 200;
-  padding: 0 60px;
-  height: 64px;
+  padding: 0 60px; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
   background: rgba(250,252,252,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(42,114,117,0.1);
-  transition: box-shadow 0.3s;
+  transition: 0.3s;
 }
 nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,82,0.08); }
-.logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 18px; color: var(--teal-deep);
-  letter-spacing: -0.3px;
-}
+.logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--teal-deep); }
 .logo span { color: var(--teal-mid); font-style: italic; }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
-  color: var(--ink-mid); text-decoration: none;
-  transition: color 0.25s;
-}
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-mid); text-decoration: none; transition: 0.25s; }
 .nav-links a:hover { color: var(--teal); }
-.nav-btn {
-  padding: 9px 22px;
-  background: var(--teal);
-  color: white !important;
-  border-radius: 100px;
-  font-size: 13px !important; font-weight: 600 !important;
-  transition: background 0.25s !important;
-}
-.nav-btn:hover { background: var(--teal-deep) !important; }
+.nav-btn { padding: 9px 22px; background: var(--teal); color: white !important; border-radius: 100px; font-size: 13px !important; font-weight: 600 !important; }
 
 /* ─── HERO ─── */
 .hero {
-  min-height: 100vh;
-  padding: 64px 0 0;
+  min-height: 100vh; padding: 64px 0 0;
   display: grid; grid-template-columns: 1fr 480px;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 70% at 85% 40%, rgba(107,184,188,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(43,95,142,0.07) 0%, transparent 50%);
-  pointer-events: none;
-}
-.hero-left {
-  padding: 100px 60px 80px 80px;
-  display: flex; flex-direction: column; justify-content: center;
-  position: relative; z-index: 1;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--teal);
-  margin-bottom: 28px;
-  animation: up 0.9s ease both;
-}
-.eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--teal-light);
-  animation: pulse 2.5s ease infinite;
-}
-@keyframes pulse {
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:0.5;transform:scale(1.4)}
-}
+.hero-left { padding: 100px 60px 80px 80px; display: flex; flex-direction: column; justify-content: center; z-index: 1; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 28px; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal-light); animation: pulse 2.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
 
-.hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(44px, 4.5vw, 68px);
-  line-height: 1.06; font-weight: 400;
-  color: var(--ink); margin-bottom: 28px;
-  animation: up 0.9s 0.1s ease both;
-}
-.hero h1 em {
-  font-style: italic; color: var(--teal);
-  display: block;
-}
-.hero-sub {
-  font-size: 17px; line-height: 1.75;
-  color: var(--ink-mid); max-width: 480px;
-  margin-bottom: 44px; font-weight: 300;
-  animation: up 0.9s 0.2s ease both;
-}
-.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; animation: up 0.9s 0.3s ease both; }
-.btn-main { padding: 14px 32px; background: var(--teal); color: white; border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; transition: 0.25s; }
-.btn-main:hover { background: var(--teal-deep); transform: translateY(-2px); }
-.btn-ghost { padding: 14px 32px; background: transparent; color: var(--teal-deep); border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; border: 2px solid var(--teal-pale); transition: 0.25s; }
-.btn-ghost:hover { border-color: var(--teal-light); background: var(--teal-ghost); }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 4.5vw, 68px); line-height: 1.06; color: var(--ink); margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--teal); display: block; }
+.hero-sub { font-size: 17px; color: var(--ink-mid); max-width: 480px; margin-bottom: 44px; }
 
-.hero-proof { display: flex; gap: 36px; margin-top: 60px; animation: up 0.9s 0.4s ease both; }
-.proof-item { display: flex; flex-direction: column; gap: 3px; }
-.proof-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--teal-deep); line-height: 1; }
-.proof-label { font-size: 12px; color: var(--ink-soft); font-weight: 500; }
-
-.hero-right { position: relative; display: flex; align-items: center; padding: 80px 60px; animation: fadeIn 1.1s 0.2s ease both; }
-.photo-wrap { width: 100%; aspect-ratio: 3/4; max-height: 520px; border-radius: 24px; background: linear-gradient(160deg, var(--teal-pale) 0%, var(--blue-pale) 100%); display: flex; align-items: center; justify-content: center; }
-.photo-placeholder { font-size: 13px; text-transform: uppercase; color: var(--teal-mid); opacity: 0.6; }
-.photo-chip { position: absolute; bottom: 20px; left: -20px; background: white; padding: 16px 20px; border-radius: 16px; box-shadow: 0 12px 40px rgba(27,79,82,0.12); min-width: 190px; }
+.hero-right { position: relative; display: flex; align-items: center; padding: 80px 60px; }
+.photo-wrap { 
+  width: 100%; aspect-ratio: 3/4; max-height: 520px; 
+  border-radius: 24px; background: #e0e7e7; 
+  overflow: hidden; position: relative;
+}
+/* СТИЛЬ ДЛЯ ТВОГО ФОТО */
+.photo-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.photo-wrap:hover img { transform: scale(1.03); }
 
 /* ─── SECTIONS ─── */
-.about { padding: 120px 80px; background: var(--teal-deep); color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-light); margin-bottom: 18px; }
-.about h2 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 3vw, 48px); margin-bottom: 24px; color: white; }
-.about p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
-.about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-.chip { padding: 7px 16px; border: 1px solid rgba(107,184,188,0.35); border-radius: 100px; font-size: 12px; color: var(--teal-light); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.a-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 24px; transition: 0.25s; }
-.a-card:hover { background: rgba(255,255,255,0.08); }
-
-.services { padding: 120px 80px; }
-.sec-head { text-align: center; margin-bottom: 64px; }
-.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.srv-card { border: 1.5px solid rgba(42,114,117,0.12); border-radius: 20px; padding: 36px; transition: 0.3s; }
-.srv-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(27,79,82,0.1); }
-
-.pricing { padding: 120px 80px; background: var(--off); }
-.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.p-card { background: white; border-radius: 20px; border: 1.5px solid rgba(42,114,117,0.1); padding: 32px; transition: 0.3s; }
-.p-card.best { border-color: var(--teal); }
-.p-num { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--ink); }
-
-.process { padding: 120px 80px; }
-.proc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; }
-.step-circle { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--teal-pale); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 20px; }
-
-.testi { padding: 120px 80px; background: var(--teal-deep); color: white; }
-.case-big { background: rgba(255,255,255,0.06); padding: 32px; border-radius: 18px; margin-bottom: 20px; }
-.case-big-body { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; }
-
-.test-section { padding: 120px 80px; }
-.faq { padding: 120px 80px; }
-.faq-item { border-bottom: 1px solid #eee; }
-.faq-q { width: 100%; background: none; border: none; padding: 20px 0; text-align: left; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
-.faq-body { max-height: 0; overflow: hidden; transition: 0.3s ease; }
-.faq-item.open .faq-body { max-height: 200px; padding-bottom: 20px; }
-
-.contact { padding: 120px 80px; background: var(--teal-deep); color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-.contact-form { background: white; padding: 40px; border-radius: 20px; color: var(--ink); }
-.f-group { margin-bottom: 15px; }
-.f-group input, .f-group select, .f-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
-.f-submit { width: 100%; padding: 14px; background: var(--teal); color: white; border: none; border-radius: 100px; cursor: pointer; font-weight: 600; }
-
-footer { background: #0F2E30; padding: 40px 80px; color: white; display: flex; justify-content: space-between; align-items: center; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+section { padding: 100px 80px; }
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* БЛОК ЗАЯВКИ ТА ТЕСТУ */
+.test-section { background: var(--off); text-align: center; }
+.test-card { 
+  max-width: 700px; margin: 40px auto; 
+  background: white; padding: 50px; 
+  border-radius: 30px; border: 1.5px solid rgba(42,114,117,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+}
+.test-card h3 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 15px; }
+
+/* ФОРМА */
+.contact-form { max-width: 600px; margin: 0 auto; text-align: left; }
+.f-group { margin-bottom: 20px; }
+.f-group label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.f-group input, .f-group select, .f-group textarea { 
+  width: 100%; padding: 14px; border: 1.5px solid #eef2f2; 
+  border-radius: 12px; background: #f9fbfb; font-family: inherit; outline: none;
+}
+.f-group input:focus { border-color: var(--teal-light); background: white; }
+.f-submit { 
+  width: 100%; padding: 16px; background: var(--teal); color: white; 
+  border: none; border-radius: 100px; cursor: pointer; font-weight: 600; font-size: 15px;
+  transition: 0.3s;
+}
+.f-submit:hover { background: var(--teal-deep); transform: translateY(-2px); }
+
+/* FAQ */
+.faq-item { border-bottom: 1px solid #eef2f2; }
+.faq-q { width: 100%; background: none; border: none; padding: 25px 0; text-align: left; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; font-size: 16px; }
+.faq-body { max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--ink-mid); }
+.faq-item.open .faq-body { max-height: 200px; padding-bottom: 25px; }
+
+footer { padding: 40px 80px; background: #0F2E30; color: white; display: flex; justify-content: space-between; align-items: center; }
+
 @media (max-width: 960px) {
   nav { padding: 0 20px; } .nav-links { display: none; }
-  .hero, .about, .contact { grid-template-columns: 1fr; padding: 60px 20px; }
-  .srv-grid, .price-grid, .proc-steps { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; } .hero-right { display: none; }
+  section, footer { padding: 60px 20px; }
+  .test-card { padding: 30px 20px; }
 }
 </style>
 </head>
@@ -209,99 +130,100 @@ footer { background: #0F2E30; padding: 40px 80px; color: white; display: flex; j
   <div class="logo">Kate<span>.</span>English</div>
   <ul class="nav-links">
     <li><a href="#about">Про мене</a></li>
-    <li><a href="#services">Формати</a></li>
-    <li><a href="#pricing">Ціни</a></li>
-    <li><a href="#test">Тест рівня</a></li>
+    <li><a href="#test">Записатись на тест</a></li>
+    <li><a href="#faq">Питання</a></li>
     <li><a href="#contact" class="nav-btn">Записатись</a></li>
   </ul>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
+<section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Онлайн-викладачка A0–B1</div>
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span> Online Tutor · A0–B1</div>
     <h1>Почни говорити<em>по-справжньому</em></h1>
-    <p class="hero-sub">Ніяких сухих правил. Тільки жива мова через практику з першого уроку.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-main">Безкоштовний пробний урок</a>
-      <a href="#test" class="btn-ghost">Мій рівень →</a>
-    </div>
+    <p class="hero-sub">Забудь про нудні підручники. Ми будемо вчити мову для життя, подорожей та кар'єри.</p>
+    <div><a href="#test" class="f-submit" style="text-decoration: none; display: inline-block; width: auto; padding: 14px 40px;">Хочу пройти тест на рівень</a></div>
   </div>
   <div class="hero-right">
-    <div class="photo-wrap"><span class="photo-placeholder">Фото Катерини</span></div>
-  </div>
-</section>
-
-<section class="about reveal" id="about">
-  <div>
-    <div class="section-label">Про мене</div>
-    <h2>Self-made кейс. Не теорія.</h2>
-    <p>Я пройшла шлях від A2 до C1 за рік, живучи у Британії. Тепер допомагаю іншим заговорити швидко.</p>
-    <div class="about-chips">
-      <span class="chip">TESOL</span><span class="chip">TEFL</span><span class="chip">British Council C1</span>
+    <div class="photo-wrap">
+      <img src="me.jpg" alt="Катерина Ковтуненко">
     </div>
   </div>
-  <div class="about-grid">
-    <div class="a-card"><h4>🎭 Ситуації</h4><p>Кейси з реального життя.</p></div>
-    <div class="a-card"><h4>🎯 Інтереси</h4><p>Уроки про те, що ви любите.</p></div>
+</section>
+
+<section class="test-section reveal" id="test">
+  <div class="test-card">
+    <div style="font-size: 40px; margin-bottom: 20px;">📝</div>
+    <h3>Бажаєш дізнатися свій рівень?</h3>
+    <p style="color: var(--ink-mid); margin-bottom: 30px;">
+        Залиш свої контакти нижче. Я зв'яжусь з тобою особисто, надішлю актуальний тест та проконсультую щодо формату навчання.
+    </p>
+    
+    <form class="contact-form">
+      <div class="f-group">
+        <label>Твоє ім'я</label>
+        <input type="text" placeholder="Як до тебе звертатися?" required>
+      </div>
+      <div class="f-group">
+        <label>Telegram або номер телефону</label>
+        <input type="text" placeholder="@username або +380..." required>
+      </div>
+      <div class="f-group">
+        <label>Мета вивчення</label>
+        <select>
+          <option>Для себе / Хобі</option>
+          <option>Для переїзду за кордон</option>
+          <option>Для роботи / співбесіди</option>
+          <option>Підготовка до іспитів</option>
+        </select>
+      </div>
+      <button type="button" class="f-submit" onclick="alert('Дякую! Скоро я напишу тобі в Telegram з тестом 🙌')">Надіслати заявку та отримати тест</button>
+    </form>
   </div>
 </section>
 
-<section class="services" id="services">
-  <div class="sec-head"><h2>Оберіть свій <em>формат</em></h2></div>
-  <div class="srv-grid">
-    <div class="srv-card"><h3>Групи</h3><p>3-6 студентів. 450₴</p></div>
-    <div class="srv-card"><h3>Пари</h3><p>2 студенти. 500₴</p></div>
-    <div class="srv-card"><h3>Individual</h3><p>1 на 1. 700₴</p></div>
+<section class="faq reveal" id="faq">
+  <h2 style="font-family: 'DM Serif Display', serif; font-size: 32px; margin-bottom: 40px; text-align: center;">Часті питання</h2>
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div class="faq-item">
+      <button class="faq-q">З якими рівнями ви працюєте? <span>+</span></button>
+      <div class="faq-body"><p>Я спеціалізуюсь на рівнях від «повного нуля» (A0) до впевненого середнього (B1). Це саме той етап, де закладається база та зникає страх говорити.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Як проходить пробний урок? <span>+</span></button>
+      <div class="faq-body"><p>Перша зустріч — безкоштовна. Ми знайомимось, перевіряємо твій рівень у розмові та підбираємо зручний графік.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div>
-    <h2>Готова взяти тебе на <em>борт</em></h2>
-    <p>Залиш заявку, і я напишу тобі сьогодні.</p>
+<footer id="contact">
+  <div class="logo" style="color: white;">Kate<span>.</span>English</div>
+  <p style="font-size: 13px; opacity: 0.6;">© 2026 Катерина Ковтуненко</p>
+  <div style="display: flex; gap: 15px;">
+    <span>Instagram</span>
+    <span>Telegram</span>
   </div>
-  <div class="contact-form">
-    <h3>Записатись</h3>
-    <div class="f-group"><input type="text" placeholder="Ваше ім'я"></div>
-    <div class="f-group"><input type="text" placeholder="Telegram / Номер"></div>
-    <button class="f-submit" onclick="alert('Дякую! Скоро зв\'яжусь!')">Надіслати</button>
-  </div>
-</section>
-
-<footer>
-  <div class="f-logo">Kate<span>.English</span></div>
-  <p>© 2026 Катерина Ковтуненко</p>
 </footer>
 
 <script>
-// Фікс навігації
-const nav = document.getElementById('nav');
+// Скрол навігації
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
 });
 
 // Анімація появи
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { 
-      e.target.classList.add('visible'); 
-    }
-  });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-// FAQ Акордеон
-document.querySelectorAll('.faq-q').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.parentElement;
-    item.classList.toggle('open');
+// Акордеон
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.classList.toggle('open');
+    btn.querySelector('span').textContent = btn.parentElement.classList.contains('open') ? '−' : '+';
   });
 });
 </script>
 
 </body>
 </html>
-
-
