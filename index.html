@@ -26,36 +26,59 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,82,0.08); }
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-mid); text-decoration: none; }
 
+section { padding: 100px 80px; }
+.section-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-light); margin-bottom: 18px; }
+
+/* HERO */
 .hero { min-height: 100vh; padding-top: 64px; display: grid; grid-template-columns: 1fr 480px; }
 .hero-left { padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; }
 .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 4.5vw, 64px); line-height: 1.1; margin-bottom: 24px; }
 .hero h1 em { color: var(--teal); font-style: italic; display: block; }
-.photo-wrap { width: 100%; aspect-ratio: 3/4; border-radius: 24px; background: var(--teal-pale); overflow: hidden; position: relative; }
+.photo-wrap { width: 100%; aspect-ratio: 3/4; border-radius: 24px; background: var(--teal-pale); overflow: hidden; }
 .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-.about { padding: 100px 80px; background: var(--teal-deep); color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-.a-card { background: rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
+/* ABOUT */
+.about { background: var(--teal-deep); color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about h2 { font-family: 'DM Serif Display', serif; font-size: 38px; margin-bottom: 24px; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.a-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); }
 
-.services { padding: 100px 80px; text-align: center; }
-.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
-.srv-card { padding: 40px 30px; border: 1.5px solid var(--teal-ghost); border-radius: 20px; transition: 0.3s; }
+/* SERVICES */
+.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.srv-card { padding: 30px; border: 1.5px solid var(--teal-ghost); border-radius: 20px; transition: 0.3s; }
 .srv-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
-.test-section { padding: 100px 80px; background: var(--off); }
-.test-card { max-width: 700px; margin: 0 auto; background: white; padding: 50px; border-radius: 30px; text-align: center; }
+/* PROCESS */
+.proc-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+.step { text-align: center; }
+.step-num { width: 40px; height: 40px; border: 2px solid var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 700; color: var(--teal); }
+
+/* CASES */
+.testi { background: var(--teal-deep); color: white; }
+.case-big { background: rgba(255,255,255,0.06); padding: 30px; border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+.case-body { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; margin-top: 15px; }
+
+/* FAQ */
+.faq-item { border-bottom: 1px solid #eee; }
+.faq-q { width: 100%; background: none; border: none; padding: 20px 0; text-align: left; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
+.faq-body { max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--ink-mid); font-size: 14px; }
+.faq-item.open .faq-body { max-height: 200px; padding-bottom: 20px; }
+
+/* FORM */
+.test-section { background: var(--off); }
+.test-card { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 30px; }
 .f-group { margin-bottom: 15px; text-align: left; }
-.f-group label { display: block; font-size: 11px; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; margin-bottom: 5px; }
-.f-group input, .f-group select { width: 100%; padding: 12px; border: 1.5px solid var(--off); border-radius: 10px; background: var(--white); }
-.f-submit { width: 100%; padding: 16px; background: var(--teal); color: white; border: none; border-radius: 100px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-.f-submit:hover { background: var(--teal-deep); }
+.f-group input, .f-group select { width: 100%; padding: 12px; border: 1.5px solid var(--off); border-radius: 10px; }
+.f-submit { width: 100%; padding: 16px; background: var(--teal); color: white; border: none; border-radius: 100px; font-weight: 600; cursor: pointer; }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 960px) {
   nav { padding: 0 20px; } .nav-links { display: none; }
-  .hero, .about, .services, .test-section { grid-template-columns: 1fr; padding: 60px 20px; }
-  .hero-right { display: none; } .srv-grid { grid-template-columns: 1fr; }
+  section, .hero, .about { grid-template-columns: 1fr; padding: 60px 20px; }
+  .hero-right, .case-arrow { display: none; }
+  .srv-grid, .proc-steps, .case-body { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -65,51 +88,98 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,82,0.08); }
   <div class="logo">Kate<span>.</span>English</div>
   <ul class="nav-links">
     <li><a href="#about">Про мене</a></li>
-    <li><a href="#services">Формати</a></li>
-    <li><a href="#test">Записатись</a></li>
+    <li><a href="#services">Ціни</a></li>
+    <li><a href="#cases">Кейси</a></li>
+    <li><a href="#test" class="nav-btn">Записатись</a></li>
   </ul>
 </nav>
 
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-left">
+    <div class="section-label" style="color: var(--teal);">Online Tutor · A0–B1</div>
     <h1>Почни говорити<em>по-справжньому</em></h1>
-    <p style="margin-bottom: 30px; font-size: 18px; color: var(--ink-mid);">Тільки жива мова через реальні ситуації та практику з першого уроку.</p>
+    <p style="margin-bottom: 30px; font-size: 18px;">Ніяких сухих правил. Тільки жива мова через практику з першого уроку.</p>
     <a href="#test" class="f-submit" style="text-decoration:none; display:inline-block; width:auto; padding:14px 40px;">Пройти тест на рівень</a>
   </div>
-  <div class="hero-right" style="padding: 60px;">
-    <div class="photo-wrap"><img src="me.jpg" alt="Катерина"></div>
-  </div>
+  <div class="hero-right" style="padding: 60px;"><div class="photo-wrap"><img src="me.jpg" alt="Катерина"></div></div>
 </section>
 
 <section class="about reveal" id="about">
   <div>
-    <h2 style="font-family: 'DM Serif Display'; font-size: 38px; margin-bottom: 20px;">Self-made кейс. Не теорія.</h2>
-    <p>Я пройшла шлях від A2 до C1 за рік у Британії. Тепер допомагаю іншим заговорити швидко, використовуючи лише сучасні матеріали (Speakout, Outcomes, ESL Brains).</p>
+    <div class="section-label">Досвід</div>
+    <h2>Self-made кейс.<br>Не теорія — реальність.</h2>
+    <p>Я переїхала до Британії з A2 і виросла до C1 за рік. Маю сертифікати TESOL, TEFL та British Council. Вчу тому, що реально працює.</p>
   </div>
   <div class="about-grid">
-    <div class="a-card"><h4>🎭 Ситуації</h4><p>Реальні діалоги: кафе, робота, подорожі.</p></div>
-    <div class="a-card"><h4>🎯 Інтереси</h4><p>Урок будується навколо твоїх хобі.</p></div>
+    <div class="a-card"><h4>🎭 Рольові ігри</h4><p>Реальні ситуації: кафе, робота, подорожі.</p></div>
+    <div class="a-card"><h4>🎯 Твої цілі</h4><p>Marvel, IT чи подорожі — вчимо те, що цікаво тобі.</p></div>
   </div>
 </section>
 
 <section class="services reveal" id="services">
-  <h2 style="font-family:'DM Serif Display'; font-size:40px;">Обери свій <em>формат</em></h2>
+  <div class="section-label" style="text-align:center;">Формати</div>
+  <h2 style="text-align:center; font-family:'DM Serif Display'; font-size:38px;">Обери свій <em>варіант</em></h2>
   <div class="srv-grid">
-    <div class="srv-card"><h3>Міні-групи</h3><p>3-6 людей. 80 хв.</p><p style="font-weight:700; margin-top:15px;">450 ₴ / урок</p></div>
-    <div class="srv-card"><h3>Парні заняття</h3><p>2 людини. 60 хв.</p><p style="font-weight:700; margin-top:15px;">500 ₴ / урок</p></div>
-    <div class="srv-card"><h3>Індивідуально</h3><p>1 на 1. 55 хв.</p><p style="font-weight:700; margin-top:15px;">700 ₴ / урок</p></div>
+    <div class="srv-card"><h3>Міні-групи</h3><p>3-6 людей. 80 хв.</p><p style="font-weight:700; margin-top:10px;">450₴ / урок</p></div>
+    <div class="srv-card"><h3>Пари</h3><p>2 людини. 60 хв.</p><p style="font-weight:700; margin-top:10px;">500₴ / урок</p></div>
+    <div class="srv-card"><h3>Індивідуально</h3><p>1 на 1. 55 хв.</p><p style="font-weight:700; margin-top:10px;">700₴ / урок</p></div>
   </div>
+</section>
+
+<section class="process reveal">
+  <div class="section-label" style="text-align:center;">Процес</div>
+  <div class="proc-steps">
+    <div class="step"><div class="step-num">1</div><h4>Заявка</h4></div>
+    <div class="step"><div class="step-num">2</div><h4>Пробний</h4></div>
+    <div class="step"><div class="step-num">3</div><h4>Формат</h4></div>
+    <div class="step"><div class="step-num">4</div><h4>Старт</h4></div>
+  </div>
+</section>
+
+<section class="testi reveal" id="cases">
+  <div class="section-label">Кейси</div>
+  <h2 style="font-family:'DM Serif Display'; font-size:38px; margin-bottom:30px;">Результати студентів</h2>
+  
+  <div class="case-big">
+    <div style="font-weight:700;">Катерина (A2 → B1+)</div>
+    <div class="case-body">
+      <div><small>ДО</small><p>Боялась говорити, плутала часи.</p></div>
+      <div class="case-arrow">→</div>
+      <div><small>ПІСЛЯ</small><p>Вільна розмова, навчання англійською.</p></div>
+    </div>
+  </div>
+
+  <div class="case-big">
+    <div style="font-weight:700;">Віктор (A0 → A2)</div>
+    <div class="case-body">
+      <div><small>ДО</small><p>Страх мови, нуль знань.</p></div>
+      <div class="case-arrow">→</div>
+      <div><small>ПІСЛЯ</small><p>Впевнене мовлення за 6 місяців.</p></div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px; margin-top:20px;">
+    <div class="a-card"><strong>Анастасія:</strong> Підготовка до Чехії.</div>
+    <div class="a-card"><strong>Талгат:</strong> Англійська для бізнесу.</div>
+    <div class="a-card"><strong>Михайло:</strong> Технічне інтерв'ю.</div>
+  </div>
+</section>
+
+<section class="faq reveal">
+  <h2 style="font-family:'DM Serif Display'; font-size:32px; margin-bottom:30px;">Питання</h2>
+  <div class="faq-item"><button class="faq-q">З якого рівня можна? <span>+</span></button><div class="faq-body"><p>Працюю з A0–B1. Беру навіть з повного нуля.</p></div></div>
+  <div class="faq-item"><button class="faq-q">Як швидко буде результат? <span>+</span></button><div class="faq-body"><p>Перші зміни помітні вже за 3-4 тижні регулярних занять.</p></div></div>
+  <div class="faq-item"><button class="faq-q">Як щодо скасування? <span>+</span></button><div class="faq-body"><p>Скасування за 24 години — безкоштовно. Менше ніж за 12 год — оплачується.</p></div></div>
 </section>
 
 <section class="test-section reveal" id="test">
   <div class="test-card">
-    <h3>Запишись на безкоштовний пробний урок</h3>
-    <p style="margin: 15px 0 30px; color: var(--ink-mid);">Залиш заявку, і я надішлю тобі тест на визначення рівня та запрошу на розмову.</p>
+    <h3>Запишись на тест</h3>
+    <p style="margin-bottom:20px; color:var(--ink-mid);">Я надішлю тест та проконсультую особисто.</p>
     <form class="contact-form">
-      <div class="f-group"><label>Ім'я</label><input type="text" placeholder="Як тебе звати?" required></div>
-      <div class="f-group"><label>Telegram / Номер</label><input type="text" placeholder="@username або номер" required></div>
-      <div class="f-group"><label>Формат</label><select><option>Міні-група</option><option>Парні заняття</option><option>Індивідуально</option></select></div>
-      <button type="button" class="f-submit" onclick="alert('Дякую! Напишу тобі з тестом 🙌')">Надіслати заявку</button>
+      <div class="f-group"><input type="text" placeholder="Ім'я" required></div>
+      <div class="f-group"><input type="text" placeholder="Telegram / @username" required></div>
+      <button type="button" class="f-submit" onclick="alert('Дякую! Скоро напишу 🙌')">Отримати тест</button>
     </form>
   </div>
 </section>
@@ -123,6 +193,7 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,82,0.08); }
 window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
 const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
 </script>
 </body>
 </html>
