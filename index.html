@@ -1266,5 +1266,11 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // FAQ accordion
+// FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener(
+  const btn = item.querySelector('.faq-q');
+  btn.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
