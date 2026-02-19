@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Катерина Ковтуненко — Онлайн-викладачка англійської</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #FAFCFC;
+  --off: #F2F7F7;
+  --teal-deep: #1B4F52;
+  --teal: #2A7275;
+  --teal-mid: #3D9094;
+  --teal-light: #6BB8BC;
+  --teal-pale: #C8E8EA;
+  --teal-ghost: #EAF5F6;
+  --blue-deep: #1C3A5E;
+  --blue: #2B5F8E;
+  --blue-mid: #4A86B8;
+  --blue-light: #8BBDD9;
+  --blue-pale: #D0E8F5;
+  --blue-ghost: #EBF4FA;
+  --ink: #1A2E30;
+  --ink-mid: #3A5558;
+  --ink-soft: #6B8C8F;
+  --ink-muted: #A8C0C2;
+  --accent: #2A7275;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 200;
+  padding: 0 60px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,252,252,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(42,114,117,0.1);
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 2px 24px rgba(27,79,82,0.08); }
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--teal-deep);
+  letter-spacing: -0.3px;
+}
+.logo span { color: var(--teal-mid); font-style: italic; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+  color: var(--ink-mid); text-decoration: none;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--teal); }
+.nav-btn {
+  padding: 9px 22px;
+  background: var(--teal);
+  color: white !important;
+  border-radius: 100px;
+  font-size: 13px !important; font-weight: 600 !important;
+  transition: background 0.25s !important;
+}
+.nav-btn:hover { background: var(--teal-deep) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  padding: 64px 0 0;
+  display: grid; grid-template-columns: 1fr 480px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 85% 40%, rgba(107,184,188,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(43,95,142,0.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-left {
+  padding: 100px 60px 80px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 28px;
+  animation: up 0.9s ease both;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal-light);
+  animation: pulse 2.5s ease infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.5;transform:scale(1.4)}
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(44px, 4.5vw, 68px);
+  line-height: 1.06; font-weight: 400;
+  color: var(--ink); margin-bottom: 28px;
+  animation: up 0.9s 0.1s ease both;
+}
+.hero h1 em {
+  font-style: italic; color: var(--teal);
+  display: block;
+}
+.hero-sub {
+  font-size: 17px; line-height: 1.75;
+  color: var(--ink-mid); max-width: 480px;
+  margin-bottom: 44px; font-weight: 300;
+  animation: up 0.9s 0.2s ease both;
+}
+.hero-sub strong { color: var(--teal-deep); font-weight: 600; }
+
+.hero-ctas {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: up 0.9s 0.3s ease both;
+}
+.btn-main {
+  padding: 14px 32px;
+  background: var(--teal); color: white;
+  border-radius: 100px; font-size: 14px; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  letter-spacing: 0.2px;
+}
+.btn-main:hover { background: var(--teal-deep); transform: translateY(-2px); }
+.btn-ghost {
+  padding: 14px 32px;
+  background: transparent; color: var(--teal-deep);
+  border-radius: 100px; font-size: 14px; font-weight: 600;
+  text-decoration: none; border: 2px solid var(--teal-pale);
+  transition: all 0.25s; letter-spacing: 0.2px;
+}
+.btn-ghost:hover { border-color: var(--teal-light); background: var(--teal-ghost); }
+
+.hero-proof {
+  display: flex; gap: 36px; margin-top: 60px;
+  animation: up 0.9s 0.4s ease both;
+}
+.proof-item { display: flex; flex-direction: column; gap: 3px; }
+.proof-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 34px; font-weight: 400; color: var(--teal-deep); line-height: 1;
+}
+.proof-label { font-size: 12px; color: var(--ink-soft); font-weight: 500; }
+
+.hero-right {
+  position: relative; display: flex; align-items: center;
+  padding: 80px 60px 80px 20px;
+  animation: fadeIn 1.1s 0.2s ease both;
+}
+.photo-wrap {
+  width: 100%; aspect-ratio: 3/4; max-height: 520px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, var(--teal-pale) 0%, var(--blue-pale) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.photo-placeholder {
+  font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--teal-mid); font-weight: 500; opacity: 0.6;
+}
+.photo-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: absolute; inset: 0;
+  border-radius: 24px;
+}
+.photo-chip {
+  position: absolute; bottom: -16px; left: -20px;
+  background: white; padding: 16px 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(27,79,82,0.12);
+  border: 1px solid rgba(42,114,117,0.08);
+  min-width: 190px;
+}
+.chip-flag { font-size: 22px; margin-bottom: 6px; }
+.chip-text { font-size: 13px; font-weight: 600; color: var(--ink); }
+.chip-sub { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+
+/* ─── ABOUT ─── */
+.about {
+  padding: 120px 80px;
+  background: var(--teal-deep);
+  color: white;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center;
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--teal-light);
+  margin-bottom: 18px;
+}
+.about h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 3vw, 48px); font-weight: 400;
+  line-height: 1.2; margin-bottom: 24px; color: white;
+}
+.about h2 em { font-style: italic; color: var(--teal-light); }
+.about p {
+  font-size: 16px; line-height: 1.8;
+  color: rgba(255,255,255,0.7); margin-bottom: 18px; font-weight: 300;
+}
+.about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.chip {
+  padding: 7px 16px;
+  border: 1px solid rgba(107,184,188,0.35);
+  border-radius: 100px;
+  font-size: 12px; font-weight: 500;
+  color: var(--teal-light); letter-spacing: 0.3px;
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.a-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 24px 22px;
+  transition: background 0.25s;
+}
+.a-card:hover { background: rgba(255,255,255,0.08); }
+.a-card-icon { font-size: 28px; margin-bottom: 12px; }
+.a-card h4 { font-size: 14px; font-weight: 600; color: white; margin-bottom: 6px; }
+.a-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* ─── SERVICES ─── */
+.services { padding: 120px 80px; background: var(--white); }
+.sec-head { text-align: center; margin-bottom: 64px; }
+.sec-head h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 3vw, 50px); font-weight: 400;
+  color: var(--ink); margin-bottom: 14px; line-height: 1.15;
+}
+.sec-head h2 em { font-style: italic; color: var(--teal); }
+.sec-head p { font-size: 16px; color: var(--ink-soft); max-width: 500px; margin: 0 auto; font-weight: 300; }
+
+.srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.srv-card {
+  border: 1.5px solid rgba(42,114,117,0.12);
+  border-radius: 20px; padding: 36px 30px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.srv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(27,79,82,0.1);
+  border-color: var(--teal-light);
+}
+.srv-icon { font-size: 34px; margin-bottom: 18px; }
+.srv-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; font-weight: 400; color: var(--ink);
+  margin-bottom: 10px;
+}
+.srv-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 20px; font-weight: 300; }
+.srv-list { list-style: none; }
+.srv-list li {
+  font-size: 13px; color: var(--ink-mid);
+  padding: 5px 0; display: flex; gap: 8px; align-items: center;
+}
+.srv-list li::before { content: '·'; color: var(--teal-light); font-size: 20px; line-height: 0; }
+.srv-tag {
+  display: inline-block; margin-top: 20px;
+  padding: 5px 14px; border-radius: 100px;
+  background: var(--teal-ghost);
+  font-size: 11px; font-weight: 600;
+  color: var(--teal); letter-spacing: 0.3px;
+}
+
+/* ─── PRICING ─── */
+.pricing { padding: 120px 80px; background: var(--off); }
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+
+.p-card {
+  background: white; border-radius: 20px;
+  border: 1.5px solid rgba(42,114,117,0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.p-card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(27,79,82,0.1); }
+.p-card.best {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px var(--teal);
+}
+.p-badge {
+  background: var(--teal); color: white;
+  text-align: center; padding: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.p-body { padding: 32px 30px; }
+.p-format {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+}
+.p-price {
+  display: flex; align-items: baseline; gap: 3px; margin-bottom: 6px;
+}
+.p-currency { font-size: 18px; font-weight: 600; color: var(--ink); }
+.p-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 52px; font-weight: 400; line-height: 1; color: var(--ink);
+}
+.p-per { font-size: 13px; color: var(--ink-soft); margin-left: 3px; }
+.p-tagline { font-size: 13px; color: var(--ink-soft); margin-bottom: 24px; line-height: 1.5; font-weight: 300; }
+.p-divider { border: none; border-top: 1px solid rgba(42,114,117,0.08); margin-bottom: 24px; }
+.p-features { list-style: none; margin-bottom: 28px; }
+.p-features li {
+  font-size: 14px; color: var(--ink-mid);
+  padding: 7px 0; display: flex; gap: 10px; align-items: flex-start;
+}
+.p-features li::before {
+  content: '✓'; color: var(--teal); font-weight: 700;
+  font-size: 12px; margin-top: 2px; flex-shrink: 0;
+}
+.p-cta {
+  display: block; text-align: center;
+  padding: 13px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+  text-decoration: none; cursor: pointer; border: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.25s;
+}
+.p-cta-outline {
+  background: transparent; color: var(--teal);
+  border: 1.5px solid var(--teal-pale);
+}
+.p-cta-outline:hover { background: var(--teal-ghost); border-color: var(--teal-light); }
+.p-cta-fill { background: var(--teal); color: white; }
+.p-cta-fill:hover { background: var(--teal-deep); }
+
+/* ─── PROCESS ─── */
+.process { padding: 120px 80px; background: var(--white); }
+.proc-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 64px; position: relative;
+}
+.proc-steps::before {
+  content: '';
+  position: absolute; top: 26px; left: 12.5%; right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal-pale), var(--blue-pale), var(--teal-pale));
+}
+.proc-step { text-align: center; padding: 0 20px; position: relative; }
+.step-circle {
+  width: 52px; height: 52px;
+  background: white; border: 2px solid var(--teal-pale);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: var(--teal-deep);
+  position: relative; z-index: 1;
+  transition: border-color 0.3s, background 0.3s;
+}
+.proc-step:hover .step-circle { border-color: var(--teal); background: var(--teal-ghost); }
+.proc-step h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.proc-step p { font-size: 13px; color: var(--ink-soft); line-height: 1.65; font-weight: 300; }
+
+/* ─── TESTIMONIALS ─── */
+.testi { padding: 120px 80px; background: var(--teal-deep); color: white; }
+.testi .sec-head h2 { color: white; }
+.testi .sec-head p { color: rgba(255,255,255,0.55); }
+.testi .section-label { color: var(--teal-light); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
+.t-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px; padding: 32px 28px;
+}
+.t-stars { color: var(--teal-light); font-size: 14px; letter-spacing: 3px; margin-bottom: 16px; }
+.t-text {
+  font-size: 15px; line-height: 1.8;
+  color: rgba(255,255,255,0.8); margin-bottom: 24px;
+  font-style: italic; font-weight: 300;
+}
+.t-author { display: flex; align-items: center; gap: 12px; }
+.t-ava {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px; color: white; flex-shrink: 0;
+}
+.t-name { font-size: 14px; font-weight: 600; color: white; }
+.t-info { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+/* ─── TEST SECTION ─── */
+.test-section { padding: 120px 80px; background: var(--off); }
+.test-wrap {
+  max-width: 760px; margin: 0 auto;
+  background: white; border-radius: 24px;
+  border: 1.5px solid rgba(42,114,117,0.12);
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(27,79,82,0.08);
+}
+.test-head {
+  padding: 40px 44px 32px;
+  border-bottom: 1px solid rgba(42,114,117,0.08);
+}
+.test-head h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; font-weight: 400; color: var(--ink);
+  margin-bottom: 10px;
+}
+.test-head p { font-size: 15px; color: var(--ink-soft); font-weight: 300; line-height: 1.6; }
+.test-frame-wrap { padding: 0; }
+.test-frame-wrap iframe {
+  width: 100%; border: none; display: block;
+  background: white;
+}
+
+/* ─── FAQ ─── */
+.faq { padding: 120px 80px; background: var(--white); }
+.faq-inner { max-width: 720px; margin: 56px auto 0; }
+.faq-item { border-bottom: 1px solid rgba(42,114,117,0.1); }
+.faq-q {
+  width: 100%; background: none; border: none;
+  padding: 20px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; text-align: left;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600; color: var(--ink);
+  transition: color 0.25s;
+}
+.faq-q:hover { color: var(--teal); }
+.faq-arrow {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--teal-pale);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal); font-size: 18px; flex-shrink: 0;
+  transition: transform 0.3s, background 0.25s;
+}
+.faq-item.open .faq-arrow { transform: rotate(45deg); background: var(--teal-ghost); }
+.faq-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.faq-item.open .faq-body { max-height: 260px; }
+.faq-body-inner {
+  padding: 0 0 20px;
+  font-size: 14px; color: var(--ink-mid);
+  line-height: 1.75; font-weight: 300;
+}
+
+/* ─── CONTACT ─── */
+.contact {
+  padding: 120px 80px;
+  background: var(--teal-deep); color: white;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: start;
+}
+.contact-l { padding-top: 8px; }
+.contact-l h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 3vw, 48px); font-weight: 400;
+  line-height: 1.2; margin-bottom: 20px;
+}
+.contact-l h2 em { font-style: italic; color: var(--teal-light); }
+.contact-l p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 40px; font-weight: 300; }
+.contact-links { display: flex; flex-direction: column; gap: 18px; }
+.c-link { display: flex; align-items: center; gap: 14px; }
+.c-link-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.c-link-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+.c-link-val { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
+
+.contact-form {
+  background: white; border-radius: 20px;
+  padding: 40px 38px;
+}
+.contact-form h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px; font-weight: 400; color: var(--ink);
+  margin-bottom: 28px;
+}
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.f-group { margin-bottom: 16px; }
+.f-group label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 7px;
+}
+.f-group input, .f-group select, .f-group textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid rgba(42,114,117,0.15);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink);
+  background: var(--off); outline: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus {
+  border-color: var(--teal-mid); background: white;
+}
+.f-group textarea { resize: vertical; min-height: 100px; }
+.f-submit {
+  width: 100%; padding: 14px;
+  background: var(--teal); color: white;
+  border: none; border-radius: 100px; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
+  transition: background 0.25s;
+}
+.f-submit:hover { background: var(--teal-deep); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0F2E30;
+  padding: 36px 80px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.f-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: rgba(255,255,255,0.6); }
+.f-logo span { font-style: italic; color: var(--teal-light); }
+.f-copy { font-size: 12px; color: rgba(255,255,255,0.3); text-align: center; line-height: 1.6; }
+.f-socials { display: flex; gap: 10px; }
+.f-soc {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.f-soc:hover { border-color: var(--teal-light); background: rgba(107,184,188,0.1); }
+
+/* ─── CASES ─── */
+.cases-big {
+  display: flex; flex-direction: column; gap: 20px;
+  margin-top: 56px;
+}
+.case-big {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px; padding: 32px 36px;
+  transition: background 0.25s;
+}
+.case-big:hover { background: rgba(255,255,255,0.09); }
+.case-big-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+.case-ava {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal), var(--blue-mid));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: white;
+}
+.case-name { font-size: 16px; font-weight: 600; color: white; }
+.case-route { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+.case-goal-pill {
+  margin-left: auto;
+  padding: 6px 16px; border-radius: 100px;
+  background: rgba(107,184,188,0.15);
+  border: 1px solid rgba(107,184,188,0.25);
+  font-size: 12px; font-weight: 600; color: var(--teal-light);
+}
+.case-big-body {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: start;
+}
+.case-col-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  margin-bottom: 12px;
+}
+.case-list { list-style: none; }
+.case-list li {
+  font-size: 14px; line-height: 1.6;
+  padding: 5px 0; display: flex; gap: 8px; align-items: flex-start;
+}
+.case-list-before li { color: rgba(255,255,255,0.55); }
+.case-list-before li::before { content: '–'; color: rgba(255,255,255,0.25); flex-shrink: 0; }
+.case-list-after li { color: rgba(255,255,255,0.85); }
+.case-list-after li::before { content: '✓'; color: var(--teal-light); font-weight: 700; flex-shrink: 0; }
+.case-arrow {
+  font-size: 22px; color: var(--teal-light);
+  padding-top: 32px; opacity: 0.6;
+}
+
+.cases-small-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  text-align: center; margin-top: 52px; margin-bottom: 24px;
+}
+.cases-small {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+}
+.cs-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px; padding: 22px 20px;
+  transition: background 0.25s;
+}
+.cs-card:hover { background: rgba(255,255,255,0.08); }
+.cs-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.cs-ava {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal-deep), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px; color: white;
+}
+.cs-name { font-size: 14px; font-weight: 600; color: white; }
+.cs-route { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+.cs-goal {
+  font-size: 11px; color: var(--teal-light); font-weight: 600;
+  margin-bottom: 8px;
+}
+.cs-result { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; font-weight: 300; }
+
+@media (max-width: 960px) {
+  .cases-small { grid-template-columns: 1fr 1fr; }
+  .case-big-body { grid-template-columns: 1fr; }
+  .case-arrow { display: none; }
+  .case-goal-pill { margin-left: 0; }
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 100px 24px 60px; }
+  .about, .contact { grid-template-columns: 1fr; gap: 48px; }
+  .about, .services, .pricing, .process, .testi, .test-section, .faq, .contact { padding: 80px 24px; }
+  .srv-grid, .price-grid, .testi-grid { grid-template-columns: 1fr; }
+  .proc-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .proc-steps::before { display: none; }
+  .about-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
+  .f-row { grid-template-columns: 1fr; }
+  .p-card.best { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">Kate<span>.</span>English</div>
+  <ul class="nav-links">
+    <li><a href="#about">Про мене</a></li>
+    <li><a href="#services">Формати</a></li>
+    <li><a href="#pricing">Ціни</a></li>
+    <li><a href="#test">Тест рівня</a></li>
+    <li><a href="#contact" class="nav-btn">Записатись</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Онлайн-викладачка англійської · A0–B1
+    </div>
+    <h1>Почни говорити<em>по-справжньому</em></h1>
+    <p class="hero-sub">
+      Ніяких сухих правил. Тільки <strong>жива мова</strong> — через реальні ситуації, діалоги та практику з першого уроку.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-main">Безкоштовний пробний урок</a>
+      <a href="#test" class="btn-ghost">Визначити свій рівень →</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item">
+        <span class="proof-num">C1</span>
+        <span class="proof-label">з A2 за 1 рік</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-num">2+</span>
+        <span class="proof-label">роки досвіду</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-num">8+</span>
+        <span class="proof-label">студентів з результатом</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <span class="photo-placeholder">Фото Катерини</span>
+    </div>
+    <div class="photo-chip">
+      <div class="chip-flag">🇬🇧</div>
+      <div class="chip-text">Жила у Великій Британії</div>
+      <div class="chip-sub">Реальний досвід мови</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <div>
+    <div class="section-label">Про мене</div>
+    <h2>Self-made кейс.<br>Не <em>теорія</em> — реальність.</h2>
+    <p>Я не педвуз. Я — людина, яка переїхала до Великої Британії, вчила маркетинг англійською, працювала англійською і виросла з A2 до C1 за рік через повне занурення в мову.</p>
+    <p>Маю сертифікати TESOL, TEFL та British Council. Підтверджений C1 — не «приблизно», а офіційно.</p>
+    <p>На уроках беру перевірені міжнародні матеріали — Speakout, Outcomes, ESL Brains, EngHub — і адаптую під інтереси кожного студента. У групах — авторська структура уроку. Індивідуально — підбираю з різних ресурсів і докручую під тебе.</p>
+    <div class="about-chips">
+      <span class="chip">TESOL</span>
+      <span class="chip">TEFL</span>
+      <span class="chip">British Council C1</span>
+      <span class="chip">Speakout</span>
+      <span class="chip">Outcomes</span>
+      <span class="chip">ESL Brains</span>
+      <span class="chip">Speaking-first</span>
+    </div>
+  </div>
+  <div class="about-grid">
+    <div class="a-card">
+      <div class="a-card-icon">🎭</div>
+      <h4>Рольові ігри</h4>
+      <p>Реальні ситуації: співбесіда, кафе, дзвінок — не абстрактні вправи.</p>
+    </div>
+    <div class="a-card">
+      <div class="a-card-icon">🎯</div>
+      <h4>Під твої інтереси</h4>
+      <p>Marvel, аніме, IT, подорожі — урок будується навколо того, що тобі близько.</p>
+    </div>
+    <div class="a-card">
+      <div class="a-card-icon">📐</div>
+      <h4>Системний підхід</h4>
+      <p>Плани на 1–2 тижні, прогрес-трекінг, чітка структура рівня.</p>
+    </div>
+    <div class="a-card">
+      <div class="a-card-icon">⚡</div>
+      <h4>Підбір під тебе</h4>
+      <p>Беру з різних ресурсів і докручую під твої цілі, рівень та інтереси.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head reveal">
+    <div class="section-label" style="color:var(--teal)">Формати навчання</div>
+    <h2>Обери свій <em>формат</em></h2>
+    <p>Від міні-групи до індивідуальних занять — знайди те, що підходить саме тобі</p>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card reveal">
+      <div class="srv-icon">👥</div>
+      <h3>Міні-групи</h3>
+      <p class="srv-desc">3–6 студентів. Максимум розмовної практики за доступною ціною. Живе спілкування та підтримка групи.</p>
+      <ul class="srv-list">
+        <li>80 хвилин / заняття</li>
+        <li>3–6 студентів у групі</li>
+        <li>Speaking + системна граматика</li>
+        <li>База: Speakout / Outcomes</li>
+        <li>ESL Brains / EngHub доповнення</li>
+      </ul>
+      <span class="srv-tag">Максимум практики · помірна ціна</span>
+    </div>
+    <div class="srv-card reveal reveal-d1">
+      <div class="srv-icon">👫</div>
+      <h3>Парні заняття</h3>
+      <p class="srv-desc">2 студенти. Більше уваги кожному, інтенсивний speaking, персоналізована програма.</p>
+      <ul class="srv-list">
+        <li>60 хвилин / заняття</li>
+        <li>2 студенти</li>
+        <li>Інтенсивний speaking-фокус</li>
+        <li>Індивідуальна увага</li>
+        <li>Гнучкий розклад</li>
+      </ul>
+      <span class="srv-tag">Баланс ціни і персоналізації</span>
+    </div>
+    <div class="srv-card reveal reveal-d2">
+      <div class="srv-icon">👤</div>
+      <h3>Індивідуально</h3>
+      <p class="srv-desc">Весь урок — тільки ти. Програма під твою мету, темп і інтереси. Найшвидший прогрес.</p>
+      <ul class="srv-list">
+        <li>55 хвилин / заняття</li>
+        <li>100% під тебе</li>
+        <li>Авторські завдання</li>
+        <li>Підготовка до іспитів / роботи</li>
+        <li>Гнучкий план навчання</li>
+      </ul>
+      <span class="srv-tag">Максимальна персоналізація</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="sec-head reveal">
+    <div class="section-label" style="color:var(--teal)">Ціни</div>
+    <h2>Прозорі <em>тарифи</em></h2>
+    <p>Без прихованих платежів. Перший урок — безкоштовно</p>
+  </div>
+  <div class="price-grid">
+    <div class="p-card best reveal">
+      <div class="p-badge">⭐ Найпопулярніший формат</div>
+      <div class="p-body">
+        <div class="p-format">Міні-група</div>
+        <div class="p-price">
+          <span class="p-currency">₴</span>
+          <span class="p-num">450</span>
+          <span class="p-per">/ заняття з людини</span>
+        </div>
+        <p class="p-tagline">3–6 студентів · 80 хвилин<br>Максимум практики за помірну ціну</p>
+        <hr class="p-divider">
+        <ul class="p-features">
+          <li>80 хв живої практики</li>
+          <li>Speaking + граматика в балансі</li>
+          <li>Авторські матеріали під групу</li>
+          <li>Домашні завдання</li>
+          <li>Підтримка групового чату</li>
+        </ul>
+        <a href="#contact" class="p-cta p-cta-fill">Записатись</a>
+      </div>
+    </div>
+
+    <div class="p-card reveal reveal-d1">
+      <div class="p-body">
+        <div class="p-format">Парні заняття</div>
+        <div class="p-price">
+          <span class="p-currency">₴</span>
+          <span class="p-num">500</span>
+          <span class="p-per">/ заняття з людини</span>
+        </div>
+        <p class="p-tagline">2 студенти · 60 хвилин<br>Баланс між ціною і персоналізацією</p>
+        <hr class="p-divider">
+        <ul class="p-features">
+          <li>60 хв інтенсивного speaking</li>
+          <li>Більше індивідуальної уваги</li>
+          <li>Матеріали під ваші інтереси</li>
+          <li>Гнучкий розклад</li>
+          <li>Прогрес-трекінг</li>
+        </ul>
+        <a href="#contact" class="p-cta p-cta-outline">Записатись</a>
+      </div>
+    </div>
+
+    <div class="p-card reveal reveal-d2">
+      <div class="p-body">
+        <div class="p-format">Індивідуально</div>
+        <div class="p-price">
+          <span class="p-currency">₴</span>
+          <span class="p-num">700</span>
+          <span class="p-per">/ заняття</span>
+        </div>
+        <p class="p-tagline">1 студент · 55 хвилин<br>Максимальна персоналізація</p>
+        <hr class="p-divider">
+        <ul class="p-features">
+          <li>55 хв повністю під тебе</li>
+          <li>Матеріали підібрані під твої інтереси</li>
+          <li>Твій темп, твої цілі</li>
+          <li>Підготовка до іспитів / роботи</li>
+          <li>Чат підтримки між уроками</li>
+          <li>Щомісячний прогрес-звіт</li>
+        </ul>
+        <a href="#contact" class="p-cta p-cta-outline">Записатись</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process reveal" id="process">
+  <div class="sec-head">
+    <div class="section-label" style="color:var(--teal)">Як починається</div>
+    <h2>Від заявки до <em>першого уроку</em></h2>
+  </div>
+  <div class="proc-steps">
+    <div class="proc-step">
+      <div class="step-circle">1</div>
+      <h4>Залишаєш заявку</h4>
+      <p>Заповнюєш форму або пишеш у Telegram — відповідаю протягом кількох годин</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-circle">2</div>
+      <h4>Пробний урок</h4>
+      <p>Безкоштовний перший урок — знайомимось, розмовляємо, розбираємось у рівні</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-circle">3</div>
+      <h4>Обираємо формат</h4>
+      <p>Підбираємо групу чи індивідуально, узгоджуємо розклад і цілі</p>
+    </div>
+    <div class="proc-step">
+      <div class="step-circle">4</div>
+      <h4>Починаємо говорити</h4>
+      <p>Регулярні заняття з відстеженням прогресу та підтримкою між уроками</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="testi reveal" id="reviews">
+  <div class="sec-head">
+    <div class="section-label">Кейси студентів</div>
+    <h2>Реальні люди.<br><em>Реальні</em> результати.</h2>
+    <p>Не обіцянки — факти. Ось що відбувається, коли є система та регулярність</p>
+  </div>
+
+  <!-- 3 розгорнуті кейси -->
+  <div class="cases-big">
+    <div class="case-big">
+      <div class="case-big-header">
+        <div class="case-ava">К</div>
+        <div>
+          <div class="case-name">Катерина</div>
+          <div class="case-route">A2 → B1+ · 1 рік · індивідуально 4×/тиждень</div>
+        </div>
+        <div class="case-goal-pill">🎓 Навчання за кордоном</div>
+      </div>
+      <div class="case-big-body">
+        <div class="case-col">
+          <div class="case-col-title">Старт</div>
+          <ul class="case-list case-list-before">
+            <li>Боялась говорити</li>
+            <li>Плутала часи</li>
+            <li>Мовчала через невпевненість</li>
+          </ul>
+        </div>
+        <div class="case-arrow">→</div>
+        <div class="case-col">
+          <div class="case-col-title">Результат</div>
+          <ul class="case-list case-list-after">
+            <li>Уроки повністю англійською</li>
+            <li>Пів-уроку — вільна розмова</li>
+            <li>Споживає контент англійською</li>
+            <li>Готується до навчання в польській програмі</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-big">
+      <div class="case-big-header">
+        <div class="case-ava">В</div>
+        <div>
+          <div class="case-name">Віктор</div>
+          <div class="case-route">A0 → A2 · 6 місяців · індивідуально 2–3×/тиждень</div>
+        </div>
+        <div class="case-goal-pill">💼 Впевненість у мові</div>
+      </div>
+      <div class="case-big-body">
+        <div class="case-col">
+          <div class="case-col-title">Старт</div>
+          <ul class="case-list case-list-before">
+            <li>Страх говорити</li>
+            <li>Негативний досвід з дитинства</li>
+            <li>«Мови — не моє»</li>
+          </ul>
+        </div>
+        <div class="case-arrow">→</div>
+        <div class="case-col">
+          <div class="case-col-title">Результат</div>
+          <ul class="case-list case-list-after">
+            <li>Уроки повністю англійською</li>
+            <li>Відповідає у будь-якому часі</li>
+            <li>Впевнене мовлення</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-big">
+      <div class="case-big-header">
+        <div class="case-ava">Х</div>
+        <div>
+          <div class="case-name">Ханна</div>
+          <div class="case-route">A1 → A2 · 6 місяців · 1×/тиждень</div>
+        </div>
+        <div class="case-goal-pill">✈️ Естонія + подорожі</div>
+      </div>
+      <div class="case-big-body">
+        <div class="case-col">
+          <div class="case-col-title">Старт</div>
+          <ul class="case-list case-list-before">
+            <li>Хороший словник</li>
+            <li>Повна відсутність структури</li>
+            <li>Невпевненість у часах</li>
+          </ul>
+        </div>
+        <div class="case-arrow">→</div>
+        <div class="case-col">
+          <div class="case-col-title">Результат</div>
+          <ul class="case-list case-list-after">
+            <li>Урок повністю англійською</li>
+            <li>Говорить у різних часах</li>
+            <li>Стабільна структура мовлення</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 коротких кейсів -->
+  <div class="cases-small-title">Ще більше результатів</div>
+  <div class="cases-small">
+    <div class="cs-card">
+      <div class="cs-top">
+        <div class="cs-ava">А</div>
+        <div>
+          <div class="cs-name">Анастасія</div>
+          <div class="cs-route">A1 → A2+ / B1</div>
+        </div>
+      </div>
+      <div class="cs-goal">🇮🇪 Ірландія · архітектор</div>
+      <p class="cs-result">Впевнене спілкування, готовність до навчання в Чехії англійською</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-top">
+        <div class="cs-ava">Т</div>
+        <div>
+          <div class="cs-name">Талгат</div>
+          <div class="cs-route">A0 → A2 · 1 рік</div>
+        </div>
+      </div>
+      <div class="cs-goal">💼 Бізнес + подорожі</div>
+      <p class="cs-result">Уроки повністю англійською, вільне спілкування, розуміння на слух</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-top">
+        <div class="cs-ava">Л</div>
+        <div>
+          <div class="cs-name">Людмила</div>
+          <div class="cs-route">A2 → B1 · 1 рік</div>
+        </div>
+      </div>
+      <div class="cs-goal">🇺🇸 Життя в США</div>
+      <p class="cs-result">90% уроку — speaking, впевнене побутове та робоче спілкування</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-top">
+        <div class="cs-ava">К</div>
+        <div>
+          <div class="cs-name">Каріна</div>
+          <div class="cs-route">A1+ · 6 місяців</div>
+        </div>
+      </div>
+      <div class="cs-goal">📝 Іспит у Польщі</div>
+      <p class="cs-result">Іспит складено. Структурна граматика, впевненість у письмі та speaking</p>
+    </div>
+    <div class="cs-card">
+      <div class="cs-top">
+        <div class="cs-ava">М</div>
+        <div>
+          <div class="cs-name">Михайло</div>
+          <div class="cs-route">1 місяць підготовки</div>
+        </div>
+      </div>
+      <div class="cs-goal">🖥 Технічне інтерв'ю</div>
+      <p class="cs-result">Структурована мова, впевнене пояснення технічних процесів на інтерв'ю</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 52px;">
+    <a href="#contact" class="btn-main" style="display:inline-block;">Хочу такий самий результат →</a>
+  </div>
+</section>
+
+<!-- TEST SECTION -->
+<section class="test-section" id="test">
+  <div class="sec-head">
+    <div class="section-label" style="color:var(--teal)">Безкоштовно</div>
+    <h2>Визнач свій <em>рівень</em></h2>
+    <p>Пройди короткий тест — і я підберу формат та програму саме для тебе</p>
+  </div>
+  <div class="test-wrap">
+    <div class="test-head">
+      <h3>Тест на визначення рівня</h3>
+      <p>Займе 5–7 хвилин. Після проходження я зв'яжусь з тобою з персональною рекомендацією 💬</p>
+    </div>
+    <div class="test-frame-wrap">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfwAvxIyJn05Q1fGYmf5e4e8JiFgtGepDL6LDitCPO8fk5PVw/viewform?embedded=true"
+        width="100%"
+        height="1800"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        loading="lazy">
+        Завантаження…
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-head">
+    <div class="section-label" style="color:var(--teal)">Питання</div>
+    <h2>Часті <em>запитання</em></h2>
+  </div>
+  <div class="faq-inner">
+    <div class="faq-item">
+      <button class="faq-q">З якого рівня можна починати? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">Я працюю з рівнями A0–B1. Абсолютних початківців теж беру — на першому уроці визначаємо рівень і будуємо план з нуля.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Як швидко буде прогрес? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">При заняттях 2 рази на тиждень перші зміни помітні вже через 3–4 тижні. Рівень A0 → A2 займає приблизно 3–4 місяці регулярної практики.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Де проходять заняття? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">Тільки онлайн — Zoom або Google Meet. Потрібен ноутбук або планшет, навушники з мікрофоном і стабільний інтернет. Всі матеріали я надсилаю в електронному вигляді.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Чи можна перенести урок? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">Так, з повідомленням за 24 години. Скасування менш ніж за 12 годин вважається проведеним уроком — це стандартна практика поваги до часу обох сторін.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Як відбувається оплата? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">Оплата щотижнево або пакетом на місяць через Monobank або Приват24. Перший пробний урок — безкоштовно.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Чи є матеріали для самостійної роботи? <span class="faq-arrow">+</span></button>
+      <div class="faq-body"><p class="faq-body-inner">Так. Після кожного уроку — домашнє завдання, аудіо-матеріали та корисні посилання. Для активних студентів є авторські PDF-worksheets.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-l">
+    <div class="section-label">Контакти</div>
+    <h2>Готова взяти<br>тебе на <em>борт</em></h2>
+    <p>Залиш заявку або напиши напряму — відповідаю зазвичай в той самий день. Перший урок безкоштовний.</p>
+    <div class="contact-links">
+      <div class="c-link">
+        <div class="c-link-icon">💬</div>
+        <div>
+          <div class="c-link-label">Telegram</div>
+          <div class="c-link-val">@kateryna_english</div>
+        </div>
+      </div>
+      <div class="c-link">
+        <div class="c-link-icon">📱</div>
+        <div>
+          <div class="c-link-label">Instagram</div>
+          <div class="c-link-val">@kateryna.english</div>
+        </div>
+      </div>
+      <div class="c-link">
+        <div class="c-link-icon">✉️</div>
+        <div>
+          <div class="c-link-label">Email</div>
+          <div class="c-link-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="046f657061767d6a652a616a63686d776c446369656d682a676b69">[email&#160;protected]</a></div>
+        </div>
+      </div>
+      <div class="c-link">
+        <div class="c-link-icon">🕐</div>
+        <div>
+          <div class="c-link-label">Час відповіді</div>
+          <div class="c-link-val">Зазвичай до кількох годин</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <h3>Записатись на урок</h3>
+    <div class="f-row">
+      <div class="f-group">
+        <label>Ім'я</label>
+        <input type="text" placeholder="Як тебе звати">
+      </div>
+      <div class="f-group">
+        <label>Telegram / Phone</label>
+        <input type="text" placeholder="@username або номер">
+      </div>
+    </div>
+    <div class="f-group">
+      <label>Формат навчання</label>
+      <select>
+        <option>Оберіть формат…</option>
+        <option>Міні-група (450 ₴)</option>
+        <option>Парні заняття (500 ₴)</option>
+        <option>Індивідуально (700 ₴)</option>
+        <option>Не знаю — допоможіть обрати</option>
+      </select>
+    </div>
+    <div class="f-group">
+      <label>Ваша мета</label>
+      <select>
+        <option>Оберіть мету…</option>
+        <option>Хочу нарешті почати говорити</option>
+        <option>Підготовка до роботи / співбесіди</option>
+        <option>Англійська для релокації / подорожей</option>
+        <option>Загальний розвиток</option>
+        <option>Підготовка до іспитів</option>
+      </select>
+    </div>
+    <div class="f-group">
+      <label>Щось хочеш додати?</label>
+      <textarea placeholder="Розкажи про себе, рівень або запитай щось…"></textarea>
+    </div>
+    <button class="f-submit" onclick="alert('Дякую! Напишу тобі найближчим часом 🙌')">Відправити заявку →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Kate<span>.English</span></div>
+  <p class="f-copy">© 2025 Катерина Ковтуненко<br>Онлайн-викладачка англійської мови</p>
+  <div class="f-socials">
+    <div class="f-soc" title="Instagram">📷</div>
+    <div class="f-soc" title="Telegram">✈️</div>
+    <div class="f-soc" title="TikTok">🎵</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Nav scroll shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => revealObs.observe(el));
+// Fallback scroll check
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight + 100) el.classList.add('visible');
+  });
+}, { passive: true });
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener(
