@@ -646,40 +646,65 @@ footer {
 }
 .f-soc:hover { border-color: var(--teal-light); background: rgba(107,184,188,0.1); }
 
-  .reviews-screenshots {
-  padding: 100px 80px;
-  background: var(--white);
-}
-
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+.reviews-slider {
+  position: relative;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 60px auto 0;
+  overflow: hidden;
 }
 
-  @media (max-width: 960px) {
-  .reviews-screenshots {
-    padding: 80px 24px;
-  }
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
 }
 
- .review-img-wrap {
+.review-img-wrap {
+  min-width: 320px;
+  flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--teal-pale);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.review-img-wrap:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(27,79,82,0.08);
+  background: white;
 }
 
 .review-img-wrap img {
   width: 100%;
   display: block;
+}
+
+/* Кнопки */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--teal);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.slider-btn.prev { left: -20px; }
+.slider-btn.next { right: -20px; }
+
+.slider-btn:hover {
+  background: var(--teal-deep);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .review-img-wrap {
+    min-width: 260px;
+  }
+
+  .slider-btn {
+    display: none;
+  }
 }
 /* ─── QUIZ ─── */
 .quiz-wrap {
@@ -1414,8 +1439,10 @@ footer {
   <div class="sec-head">
     <div class="section-label">Відгуки</div>
     <h2>Що кажуть <em>студенти</em></h2>
-</div>
-  <div class="reviews-grid">
+  </div>
+<div class="reviews-slider">
+<button class="slider-btn prev">‹</button>
+<div class="reviews-track">
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review1.png" alt="Відгук 1"></div>
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review2.png" alt="Відгук 2"></div>    
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review3.png" alt="Відгук 3"></div>    
@@ -1427,8 +1454,9 @@ footer {
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review9.png" alt="Відгук 9"></div>    
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review10.png" alt="Відгук 10"></div>    
 <div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review11.png" alt="Відгук 11"></div>    
-    </div>
-</section>
+</div>
+    <button class="slider-btn next">›</button>
+  </div></section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
@@ -1743,6 +1771,31 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   renderQuestion();
+
+  /* ─── REVIEWS SLIDER ─── */
+
+const track = document.querySelector('.reviews-track');
+const nextBtn = document.querySelector('.slider-btn.next');
+const prevBtn = document.querySelector('.slider-btn.prev');
+
+if (track && nextBtn && prevBtn) {
+  let index = 0;
+  const slideWidth = 340; // ширина карточки + gap
+
+  nextBtn.addEventListener('click', () => {
+    if (index < track.children.length - 1) {
+      index++;
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (index > 0) {
+      index--;
+      track.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
+  });
+}
 
   /* ───────── FAQ ───────── */
 
