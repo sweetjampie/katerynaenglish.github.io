@@ -28,7 +28,7 @@
   --accent: #2A7275;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+о* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -1469,45 +1469,60 @@ footer {
       </div>
     </div>
   </div>
-  <div class="contact-form">
-    <h3>Записатись на урок</h3>
-    <div class="f-row">
-      <div class="f-group">
-        <label>Ім'я</label>
-        <input type="text" placeholder="Як тебе звати">
-      </div>
-      <div class="f-group">
-        <label>Telegram / Phone</label>
-        <input type="text" placeholder="@username або номер">
-      </div>
+ <form class="contact-form"
+      action="https://formsubmit.co/kovtunenko.eng@gmail.com"
+      method="POST">
+
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="Нова заявка з сайту Kate English">
+  <input type="hidden" name="_next" value="https://sweetjampie.github.io/katerynaenglish.github.io/thanks.html">
+  <input type="hidden" name="_autoresponse" value="Дякую за заявку! Я зв’яжуся з вами найближчим часом 🙌">
+  <h3>Записатись на урок</h3>
+
+  <div class="f-row">
+    <div class="f-group">
+      <label>Ім'я</label>
+      <input type="text" name="name" required>
     </div>
     <div class="f-group">
-      <label>Формат навчання</label>
-      <select>
-        <option>Оберіть формат…</option>
-        <option>Міні-група (450 ₴)</option>
-        <option>Парні заняття (500 ₴)</option>
-        <option>Індивідуально (700 ₴)</option>
-        <option>Не знаю — допоможіть обрати</option>
-      </select>
+      <label>Telegram / Phone</label>
+      <input type="text" name="contact" required>
     </div>
-    <div class="f-group">
-      <label>Ваша мета</label>
-      <select>
-        <option>Оберіть мету…</option>
-        <option>Хочу нарешті почати говорити</option>
-        <option>Підготовка до роботи / співбесіди</option>
-        <option>Англійська для релокації / подорожей</option>
-        <option>Загальний розвиток</option>
-        <option>Підготовка до іспитів</option>
-      </select>
-    </div>
-    <div class="f-group">
-      <label>Щось хочеш додати?</label>
-      <textarea placeholder="Розкажи про себе, рівень або запитай щось…"></textarea>
-    </div>
-    <button class="f-submit" onclick="alert('Дякую! Напишу тобі найближчим часом 🙌')">Відправити заявку →</button>
   </div>
+
+  <div class="f-group">
+    <label>Формат навчання</label>
+    <select name="format" required>
+      <option value="">Оберіть формат…</option>
+      <option>Міні-група (450 ₴)</option>
+      <option>Парні заняття (550 ₴)</option>
+      <option>Індивідуально (750 ₴)</option>
+      <option>Не знаю — допоможіть обрати</option>
+    </select>
+  </div>
+
+  <div class="f-group">
+    <label>Ваша мета</label>
+    <select name="goal" required>
+      <option value="">Оберіть мету…</option>
+      <option>Хочу нарешті почати говорити</option>
+      <option>Підготовка до роботи / співбесіди</option>
+      <option>Англійська для релокації / подорожей</option>
+      <option>Загальний розвиток</option>
+      <option>Підготовка до іспитів</option>
+    </select>
+  </div>
+
+  <div class="f-group">
+    <label>Додатково</label>
+    <textarea name="message"></textarea>
+  </div>
+
+  <button type="submit" class="f-submit">
+    Відправити заявку →
+  </button>
+
+</form>
 </section>
 
 <!-- FOOTER -->
