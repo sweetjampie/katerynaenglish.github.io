@@ -59,16 +59,18 @@ nav {
   z-index: 999;
 }
 
-.nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--ink-mid);
-  text-decoration: none;
-  transition: all 0.25s ease;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px; /* Расстояние между пунктами */
+  list-style: none; /* Убираем точки списка */
 }
 
 .nav-links a:hover {
   color: var(--teal);
+}
+  .nav-links li {
+  display: inline-block;
 }
 
 .nav-btn {
