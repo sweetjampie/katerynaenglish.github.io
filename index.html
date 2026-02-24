@@ -1216,7 +1216,7 @@ footer {
   <div class="cases-big">
     <div class="case-big">
       <div class="case-big-header">
-        <div class="case-ava">К</div>
+        <div class="case-ava"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/kate.png" alt="Катя""></div>
         <div>
           <div class="case-name">Катерина</div>
           <div class="case-route">A2 → B1+ · 1 рік · індивідуально 4×/тиждень</div>
@@ -1247,7 +1247,7 @@ footer {
 
     <div class="case-big">
       <div class="case-big-header">
-        <div class="case-ava">В</div>
+        <div class="case-ava"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/victor.png" alt="Віктор""></div>
         <div>
           <div class="case-name">Віктор</div>
           <div class="case-route">A0 → A2 · 6 місяців · індивідуально 2–3×/тиждень</div>
@@ -1277,7 +1277,7 @@ footer {
 
     <div class="case-big">
       <div class="case-big-header">
-        <div class="case-ava">Х</div>
+        <div class="case-ava"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/hanna.png" alt="Хання""></div>
         <div>
           <div class="case-name">Ханна</div>
           <div class="case-route">A1 → A2 · 6 місяців · 1×/тиждень</div>
@@ -1465,6 +1465,35 @@ footer {
       <div class="faq-body"><p class="faq-body-inner">Так. Після кожного уроку — домашнє завдання, аудіо-матеріали та корисні посилання. Для активних студентів є авторські PDF-worksheets.</p></div>
     </div>
   </div>
+</section>
+
+  <section class="reviews-screenshots reveal" id="reviews-gallery" style="padding: 100px 80px; background: var(--white);">
+  <div class="sec-head">
+    <div class="section-label" style="color:var(--teal)">Відгуки</div>
+    <h2>Що кажуть <em>студенти</em></h2>
+    <p>Скріншоти повідомлень від моїх учнів</p>
+  </div>
+
+  <div class="reviews-grid" style="
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+  ">
+    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review1.png" alt="Відгук 1" style="width: 100%; display: block;">
+    </div>
+    
+    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review2.png" alt="Відгук 2" style="width: 100%; display: block;">
+    </div>
+
+    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+      <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review3.png" alt="Відгук 3" style="width: 100%; display: block;">
+    </div>
+
+    </div>
 </section>
 
 <!-- CONTACT -->
@@ -1764,15 +1793,26 @@ document.addEventListener('DOMContentLoaded', function () {
   renderQuestion();
 
   /* ─── FAQ ─── */
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const btn = item.querySelector('.faq-q');
-    if (!btn) return;
+ document.querySelectorAll('.faq-item').forEach(item => {
+  const btn = item.querySelector('.faq-q');
+  const body = item.querySelector('.faq-body');
+  
+  if (!btn || !body) return;
 
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      item.classList.toggle('open');
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    
+    // Закриваємо всі інші (опціонально)
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-body').style.maxHeight = null;
     });
-  });
 
+    // Відкриваємо поточне
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + "px";
+    }
+  });
 });
 </script>
