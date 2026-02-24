@@ -641,6 +641,41 @@ footer {
 }
 .f-soc:hover { border-color: var(--teal-light); background: rgba(107,184,188,0.1); }
 
+  .reviews-screenshots {
+  padding: 100px 80px;
+  background: var(--white);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+  @media (max-width: 960px) {
+  .reviews-screenshots {
+    padding: 80px 24px;
+  }
+}
+
+ .review-img-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--teal-pale);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-img-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(27,79,82,0.08);
+}
+
+.review-img-wrap img {
+  width: 100%;
+  display: block;
+}
 /* ─── QUIZ ─── */
 .quiz-wrap {
   max-width: 680px; margin: 0 auto;
@@ -1337,26 +1372,24 @@ footer {
     </div>
   </div>
 </section>
-<section class="reviews-screenshots reveal" id="reviews-gallery" style="padding: 100px 80px; background: var(--white);">
+<section class="reviews-screenshots reveal" id="reviews-gallery">
   <div class="sec-head">
-    <div class="section-label" style="color:var(--teal)">Відгуки</div>
+    <div class="section-label">Відгуки</div>
     <h2>Що кажуть <em>студенти</em></h2>
-    <p>Скріншоти повідомлень від моїх учнів</p>
-  </div>
-  <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review1.png" alt="Відгук 1" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review2.png" alt="Відгук 2" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review3.png" alt="Відгук 3" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review4.png" alt="Відгук 4" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review5.png" alt="Відгук 5" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review6.png" alt="Відгук 6" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review7.png" alt="Відгук 7" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review8.png" alt="Відгук 8" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review9.png" alt="Відгук 9" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review10.png" alt="Відгук 10" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review11.png" alt="Відгук 11" style="width: 100%;"></div>
-    <div class="review-img-wrap" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--teal-pale);"><img src="https://sweetjampie.github.io/katerynaenglish.github.io/review12.png" alt="Відгук 12" style="width: 100%;"></div>
-  </div>
+</div>
+  <div class="reviews-grid">
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review1.png" alt="Відгук 1"></div>
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review2.png" alt="Відгук 2"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review3.png" alt="Відгук 3"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review4.png" alt="Відгук 4"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review5.png" alt="Відгук 5"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review6.png" alt="Відгук 6"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review7.png" alt="Відгук 7"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review8.png" alt="Відгук 8"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review9.png" alt="Відгук 9"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review10.png" alt="Відгук 10"></div>    
+<div class="review-img-wrap"> <img src="https://sweetjampie.github.io/katerynaenglish.github.io/review11.png" alt="Відгук 11"></div>    
+    </div>
 </section>
 
 <!-- CONTACT -->
