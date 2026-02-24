@@ -1498,14 +1498,16 @@ footer {
 
   <div class="f-row">
     <div class="f-group">
-      <label>Ім'я</label>
-      <input type="text" name="name" required>
-    </div>
-    <div class="f-group">
-      <label>Telegram / Phone</label>
-      <input type="text" name="contact" required>
-    </div>
+     <label for="name">Ім'я</label>
+    <input id="name" type="text" name="name" placeholder="Ваше ім'я" required>
   </div>
+
+  <div class="f-group">
+    <label for="contact">Telegram / Phone</label>
+    <input id="contact" type="text" name="contact" placeholder="@username або номер телефону" required>
+  </div>
+</div>
+
 
   <div class="f-group">
     <label>Формат навчання</label>
