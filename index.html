@@ -1521,170 +1521,176 @@ footer {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Nav scroll shadow
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-// Reveal on scroll
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => revealObs.observe(el));
-
-// Fallback scroll check
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight + 100) el.classList.add('visible');
-  });
-}, { passive: true });
-
-// Initial check on load (for elements already in viewport)
-window.addEventListener('load', () => {
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight + 100) el.classList.add('visible');
-  });
-});
-
-// ─── QUIZ ───
-const questions = [
-  // A1 — Present Simple
-  { topic: 'Present Simple', q: 'She ____ to work every day.', opts: ['go','goes','going'], ans: 1 },
-  { topic: 'Present Simple', q: 'I ____ a cat.', opts: ['has','have','having'], ans: 1 },
-  { topic: 'To be', q: 'They ____ happy.', opts: ['am','is','are'], ans: 2 },
-  { topic: 'Present Simple', q: 'He ____ coffee every morning.', opts: ['drink','drinks','drinking'], ans: 1 },
-  { topic: 'Possessives', q: 'This is ____ book.', opts: ['my','mine','me'], ans: 0 },
-  { topic: 'Questions', q: 'Choose the correct question:', opts: ['You like coffee?','Do you like coffee?','Like you coffee?'], ans: 1 },
-  // A2 — Present Continuous, can
-  { topic: 'Present Simple / Continuous', q: 'We ____ to the park at weekends.', opts: ['go','goes','going'], ans: 0 },
-  { topic: 'Present Continuous', q: "I can't come because I ____ working.", opts: ['am','is','be'], ans: 0 },
-  // B1 — Conditionals, Present Perfect, some/any
-  { topic: 'Second Conditional', q: 'If I ____ more time, I would travel.', opts: ['have','had','will have'], ans: 1 },
-  { topic: 'Present Perfect', q: 'She has lived here ____ 2020.', opts: ['since','for','from'], ans: 0 },
-  { topic: 'Some / Any', q: "There isn't ____ milk left.", opts: ['some','any','many'], ans: 1 },
-  { topic: 'Comparatives', q: 'The film was ____ than I expected.', opts: ['interesting','more interesting','most interesting'], ans: 1 },
-  // B1+ — Wish, Past Perfect, Reported speech
-  { topic: 'Wish', q: 'I wish I ____ more confident when speaking English.', opts: ['am','was','were'], ans: 2 },
-  { topic: 'Past Perfect', q: 'By the time we arrived, the meeting ____.', opts: ['finished','had finished','has finished'], ans: 1 },
-  { topic: 'Reported Speech', q: 'She told me she ____ call later.', opts: ['will','would','calls'], ans: 1 },
-  // B2 — Third Conditional, Passive, Inversion
-  { topic: 'Third Conditional', q: 'If he ____ harder, he would have passed the exam.', opts: ['studies','studied','had studied'], ans: 2 },
-  { topic: 'Passive Voice', q: 'The project needs ____ by Friday.', opts: ['to finish','to be finished','finishing'], ans: 1 },
-  { topic: 'Inversion', q: 'Hardly ____ the meeting started when the internet went down.', opts: ['had','has','did'], ans: 0 },
-];
-
-const results = [
-  { max: 4,  level: 'A0–A1', emoji: '🌱', title: 'Початківець', desc: 'Ти тільки починаєш — і це найкращий момент. Почнемо з базових структур і вже за кілька місяців ти будеш спілкуватись.' },
-  { max: 8,  level: 'A1–A2', emoji: '🌿', title: 'Базовий рівень', desc: 'Є фундамент! Тепер головне — довести до автоматизму базові часи і почати говорити. Саме на це ми й зробимо акцент.' },
-  { max: 12, level: 'A2–B1', emoji: '🌳', title: 'Pre-Intermediate', desc: 'Ти вже багато знаєш — але, можливо, ще боїшся говорити або плутаєшся в часах. Займемося speaking і систематизацією.' },
-  { max: 15, level: 'B1',    emoji: '🚀', title: 'Intermediate', desc: 'Solid! Граматика є, тепер треба більше практики і впевненості. Розмовний клуб або індивідуальні — ідеально підійдуть.' },
-  { max: 18, level: 'B1–B2', emoji: '🏆', title: 'Upper-Intermediate', desc: 'Відмінний рівень! Ти вже можеш говорити вільно. Попрацюємо над складними структурами і виведемо тебе на B2.' },
-];
-
-let current = 0;
-let score = 0;
-let answered = false;
-
-function getResult(sc) {
-  for (let r of results) { if (sc <= r.max) return r; }
-  return results[results.length - 1];
-}
-
-function renderQuestion() {
-  answered = false;
-  const q = questions[current];
-  const pct = (current / questions.length) * 100;
-  document.getElementById('qpBar').style.width = pct + '%';
-  document.getElementById('qpLabel').textContent = `Питання ${current + 1} з ${questions.length}`;
-
-  const sentence = q.q.replace('____', '<span class="quiz-blank">&nbsp;</span>');
-  const optsHtml = q.opts.map((o, i) =>
-    `<button class="quiz-opt" onclick="answer(${i})">${o}</button>`
-  ).join('');
-
-  document.getElementById('quizQWrap').innerHTML = `
-    <div class="quiz-topic">${q.topic}</div>
-    <div class="quiz-sentence">${sentence}</div>
-    <div class="quiz-options">${optsHtml}</div>
-    <div class="quiz-feedback" id="qFeedback"></div>
-    <div style="text-align:right; margin-top:16px;">
-      <button class="quiz-btn-next" id="btnNext" onclick="nextQ()" style="display:none;">Далі →</button>
-    </div>
-  `;
-}
-
-function answer(i) {
-  if (answered) return;
-  answered = true;
-  const q = questions[current];
-  const opts = document.querySelectorAll('.quiz-opt');
-  const fb = document.getElementById('qFeedback');
-  opts.forEach(o => o.classList.add('disabled'));
-
-  if (i === q.ans) {
-    score++;
-    opts[i].classList.add('correct');
-    fb.textContent = '✓ Правильно!';
-    fb.className = 'quiz-feedback show ok';
-  } else {
-    opts[i].classList.add('wrong');
-    opts[q.ans].classList.add('correct');
-    fb.textContent = `✗ Правильна відповідь: ${q.opts[q.ans]}`;
-    fb.className = 'quiz-feedback show bad';
+  /* ─── NAV SHADOW ─── */
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
   }
-  document.getElementById('btnNext').style.display = 'inline-block';
-  document.getElementById('btnSkip').style.display = 'none';
-}
 
-function nextQ() {
-  current++;
-  if (current >= questions.length) { showResult(); return; }
-  document.getElementById('btnSkip').style.display = 'block';
+  /* ─── REVEAL (только IntersectionObserver, без fallback) ─── */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const revealObs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    reveals.forEach(el => revealObs.observe(el));
+  } else {
+    // если вдруг старый браузер
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  /* ─── QUIZ ─── */
+
+  const questions = [
+    { topic:'Present Simple', q:'She ____ to work every day.', opts:['go','goes','going'], ans:1 },
+    { topic:'Present Simple', q:'I ____ a cat.', opts:['has','have','having'], ans:1 },
+    { topic:'To be', q:'They ____ happy.', opts:['am','is','are'], ans:2 },
+    { topic:'Present Simple', q:'He ____ coffee every morning.', opts:['drink','drinks','drinking'], ans:1 },
+    { topic:'Possessives', q:'This is ____ book.', opts:['my','mine','me'], ans:0 },
+    { topic:'Questions', q:'Choose the correct question:', opts:['You like coffee?','Do you like coffee?','Like you coffee?'], ans:1 },
+    { topic:'Present Simple / Continuous', q:'We ____ to the park at weekends.', opts:['go','goes','going'], ans:0 },
+    { topic:'Present Continuous', q:"I can't come because I ____ working.", opts:['am','is','be'], ans:0 },
+    { topic:'Second Conditional', q:'If I ____ more time, I would travel.', opts:['have','had','will have'], ans:1 },
+    { topic:'Present Perfect', q:'She has lived here ____ 2020.', opts:['since','for','from'], ans:0 },
+    { topic:'Some / Any', q:"There isn't ____ milk left.", opts:['some','any','many'], ans:1 },
+    { topic:'Comparatives', q:'The film was ____ than I expected.', opts:['interesting','more interesting','most interesting'], ans:1 },
+    { topic:'Wish', q:'I wish I ____ more confident.', opts:['am','was','were'], ans:2 },
+    { topic:'Past Perfect', q:'By the time we arrived, the meeting ____.', opts:['finished','had finished','has finished'], ans:1 },
+    { topic:'Reported Speech', q:'She told me she ____ call later.', opts:['will','would','calls'], ans:1 },
+    { topic:'Third Conditional', q:'If he ____ harder, he would have passed.', opts:['studies','studied','had studied'], ans:2 },
+    { topic:'Passive Voice', q:'The project needs ____ by Friday.', opts:['to finish','to be finished','finishing'], ans:1 },
+    { topic:'Inversion', q:'Hardly ____ the meeting started...', opts:['had','has','did'], ans:0 },
+  ];
+
+  const results = [
+    { max:4, level:'A0–A1', emoji:'🌱', title:'Початківець', desc:'Почнемо з базових структур.' },
+    { max:8, level:'A1–A2', emoji:'🌿', title:'Базовий рівень', desc:'Закріпимо базу та speaking.' },
+    { max:12, level:'A2–B1', emoji:'🌳', title:'Pre-Intermediate', desc:'Систематизація + розмовна практика.' },
+    { max:15, level:'B1', emoji:'🚀', title:'Intermediate', desc:'Більше впевненості та fluency.' },
+    { max:18, level:'B1–B2', emoji:'🏆', title:'Upper-Intermediate', desc:'Виведемо на впевнений B2.' },
+  ];
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+
+  function getResult(sc) {
+    return results.find(r => sc <= r.max) || results[results.length - 1];
+  }
+
+  function renderQuestion() {
+    answered = false;
+    const q = questions[current];
+
+    const bar = document.getElementById('qpBar');
+    const label = document.getElementById('qpLabel');
+    const wrap = document.getElementById('quizQWrap');
+
+    if (!wrap) return;
+
+    bar.style.width = (current / questions.length) * 100 + '%';
+    label.textContent = `Питання ${current + 1} з ${questions.length}`;
+    wrap.innerHTML = '';
+
+    const topic = document.createElement('div');
+    topic.className = 'quiz-topic';
+    topic.textContent = q.topic;
+
+    const sentence = document.createElement('div');
+    sentence.className = 'quiz-sentence';
+    sentence.innerHTML = q.q.replace('____','<span class="quiz-blank">&nbsp;</span>');
+
+    const options = document.createElement('div');
+    options.className = 'quiz-options';
+
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.addEventListener('click', () => answer(i));
+      options.appendChild(btn);
+    });
+
+    const feedback = document.createElement('div');
+    feedback.className = 'quiz-feedback';
+    feedback.id = 'qFeedback';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'quiz-btn-next';
+    nextBtn.textContent = 'Далі →';
+    nextBtn.style.display = 'none';
+    nextBtn.addEventListener('click', nextQ);
+
+    wrap.append(topic, sentence, options, feedback, nextBtn);
+  }
+
+  function answer(i) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[current];
+    const buttons = document.querySelectorAll('.quiz-opt');
+    const fb = document.getElementById('qFeedback');
+
+    buttons.forEach(b => b.disabled = true);
+
+    if (i === q.ans) {
+      score++;
+      buttons[i].classList.add('correct');
+      fb.textContent = '✓ Правильно!';
+      fb.className = 'quiz-feedback show ok';
+    } else {
+      buttons[i].classList.add('wrong');
+      buttons[q.ans].classList.add('correct');
+      fb.textContent = `✗ Правильна відповідь: ${q.opts[q.ans]}`;
+      fb.className = 'quiz-feedback show bad';
+    }
+
+    document.querySelector('.quiz-btn-next').style.display = 'inline-block';
+  }
+
+  function nextQ() {
+    current++;
+    if (current >= questions.length) return showResult();
+    renderQuestion();
+  }
+
+  function showResult() {
+    const r = getResult(score);
+    document.getElementById('quizProgress').style.display = 'none';
+    document.getElementById('quizScreen').style.display = 'none';
+
+    document.getElementById('resultEmoji').textContent = r.emoji;
+    document.getElementById('resultLevel').textContent = r.level;
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultDesc').textContent = r.desc;
+    document.getElementById('resultScreen').style.display = 'block';
+  }
+
   renderQuestion();
-}
 
-function skipQuestion() {
-  current++;
-  if (current >= questions.length) { showResult(); return; }
-  renderQuestion();
-}
+  /* ─── FAQ ─── */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    if (!btn) return;
 
-function showResult() {
-  document.getElementById('quizProgress').style.display = 'none';
-  document.getElementById('quizScreen').style.display = 'none';
-  const r = getResult(score);
-  document.getElementById('resultEmoji').textContent = r.emoji;
-  document.getElementById('resultLevel').textContent = r.level;
-  document.getElementById('resultTitle').textContent = r.title;
-  document.getElementById('resultDesc').textContent = r.desc;
-  document.getElementById('resultScreen').style.display = 'block';
-}
-
-function restartQuiz() {
-  current = 0; score = 0; answered = false;
-  document.getElementById('quizProgress').style.display = 'flex';
-  document.getElementById('quizScreen').style.display = 'block';
-  document.getElementById('resultScreen').style.display = 'none';
-  document.getElementById('btnSkip').style.display = 'block';
-  renderQuestion();
-}
-
-// Init
-renderQuestion();
-
-
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      item.classList.toggle('open');
+    });
   });
+
 });
 </script>
-</body>
-</html>
