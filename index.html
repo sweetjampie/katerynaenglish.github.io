@@ -804,11 +804,9 @@ footer {
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 .reveal {
-  opacity: 0; transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  opacity: 1;
+  transform: none;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 960px) {
   nav { padding: 0 24px; }
@@ -1529,10 +1527,11 @@ footer {
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
 
-  /* ─── NAV SHADOW ─── */
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  /* ───────── NAV SHADOW ───────── */
   const nav = document.getElementById('nav');
   if (nav) {
     window.addEventListener('scroll', () => {
@@ -1540,25 +1539,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   }
 
-  /* ─── REVEAL (только IntersectionObserver, без fallback) ─── */
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const revealObs = new IntersectionObserver((entries, observer) => {
+  /* ───────── REVEAL ANIMATION ───────── */
+  const reveals = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.1 });
 
-    reveals.forEach(el => revealObs.observe(el));
+    reveals.forEach(el => observer.observe(el));
   } else {
-    // если вдруг старый браузер
-    reveals.forEach(el => el.classList.add('visible'));
+    reveals.forEach(el => el.classList.add("visible"));
   }
 
-  /* ─── QUIZ ─── */
+  /* ───────── QUIZ ───────── */
 
   const questions = [
     { topic:'Present Simple', q:'She ____ to work every day.', opts:['go','goes','going'], ans:1 },
@@ -1676,6 +1675,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function showResult() {
     const r = getResult(score);
+
     document.getElementById('quizProgress').style.display = 'none';
     document.getElementById('quizScreen').style.display = 'none';
 
@@ -1683,32 +1683,49 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('resultLevel').textContent = r.level;
     document.getElementById('resultTitle').textContent = r.title;
     document.getElementById('resultDesc').textContent = r.desc;
+
     document.getElementById('resultScreen').style.display = 'block';
+  }
+
+  function skipQuestion() {
+    nextQ();
+  }
+
+  function restartQuiz() {
+    current = 0;
+    score = 0;
+
+    document.getElementById('resultScreen').style.display = 'none';
+    document.getElementById('quizScreen').style.display = 'block';
+    document.getElementById('quizProgress').style.display = 'flex';
+
+    renderQuestion();
   }
 
   renderQuestion();
 
-  /* ─── FAQ ─── */
- document.querySelectorAll('.faq-item').forEach(item => {
-  const btn = item.querySelector('.faq-q');
-  const body = item.querySelector('.faq-body');
-  
-  if (!btn || !body) return;
+  /* ───────── FAQ ───────── */
 
-  btn.addEventListener('click', () => {
-    const isOpen = item.classList.contains('open');
-    
-    // Закриваємо всі інші (опціонально)
-    document.querySelectorAll('.faq-item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector('.faq-body').style.maxHeight = null;
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    const body = item.querySelector('.faq-body');
+
+    if (!btn || !body) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-body').style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + "px";
+      }
     });
-
-    // Відкриваємо поточне
-    if (!isOpen) {
-      item.classList.add('open');
-      body.style.maxHeight = body.scrollHeight + "px";
-    }
   });
+
 });
 </script>
