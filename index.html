@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Катерина Ковтуненко — Онлайн-викладачка англійської</title>
+<meta name="description" content="Онлайн-уроки англійської A0–B1. Speaking-first підхід. Безкоштовний пробний урок.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
 :root {
   --white: #FAFCFC;
@@ -1101,7 +1100,7 @@ footer {
       <ul class="srv-list">
         <li>Індивідуальні: перенесення не менше ніж за 24 години</li>
         <li>Менше ніж 24 години — заняття вважається проведеним</li>
-        <li>Скасування викладачем < 24 год — наступне заняття безкоштовне</li>
+        <li>Скасування викладачем &lt; 24 год — наступне заняття безкоштовне</li>
         <li>Парні: перенесення лише за спільним погодженням обох студентів (24 год)</li>
         <li>Групові: не переносяться, надсилається відеозапис</li>
       </ul>
@@ -1328,7 +1327,7 @@ footer {
         <!-- injected by JS -->
       </div>
       <div class="quiz-nav">
-        <button class="quiz-btn-skip" id="btnSkip" onclick="skipQuestion()">Пропустити →</button>
+        <button type="button" class="quiz-btn-skip" id="btnSkip">Пропустити →</button>
       </div>
     </div>
 
@@ -1342,7 +1341,7 @@ footer {
         <div class="result-next">
           <p class="result-cta-label">Хочеш дізнатись свій план навчання?</p>
           <a href="#contact" class="btn-main" style="display:inline-block;">Записатись на безкоштовний урок →</a>
-          <button class="quiz-retry" onclick="restartQuiz()">Пройти ще раз</button>
+          <button type="button" class="quiz-retry" id="btnRetry">Пройти ще раз</button> 
         </div>
       </div>
     </div>
@@ -1520,8 +1519,8 @@ footer {
   </div>
 
   <div class="f-group">
-    <label for="contact">Telegram / Phone</label>
-    <input id="contact" type="text" name="contact" placeholder="@username або номер телефону" required>
+    <label for="userContact">Telegram / Phone</label>
+    <input id="userContact" type="text" name="contact">
   </div>
 </div>
 
@@ -1751,18 +1750,24 @@ document.addEventListener("DOMContentLoaded", function() {
     nextQ();
   }
 
-  function restartQuiz() {
-    current = 0;
-    score = 0;
+function restartQuiz() {
+  current = 0;
+  score = 0;
 
-    document.getElementById('resultScreen').style.display = 'none';
-    document.getElementById('quizScreen').style.display = 'block';
-    document.getElementById('quizProgress').style.display = 'flex';
-
-    renderQuestion();
-  }
+  document.getElementById('resultScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'block';
+  document.getElementById('quizProgress').style.display = 'flex';
 
   renderQuestion();
+}
+
+renderQuestion();
+  /* --- ADD THIS --- */
+const btnSkip = document.getElementById('btnSkip');
+if (btnSkip) btnSkip.addEventListener('click', skipQuestion);
+
+const btnRetry = document.getElementById('btnRetry');
+if (btnRetry) btnRetry.addEventListener('click', restartQuiz);
 
   /* ─── REVIEWS SLIDER ─── */
 
